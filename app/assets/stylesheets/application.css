@@ -1,0 +1,52 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+.main {
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    padding: 300px 0px 250px 0px;
+    text-align: center;
+}
+
+.board {
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    padding: 170px 0px 60px 0px;
+    text-align: center;
+}
+  
+/* 게시판 상단 Thum 영역(모바일) */
+.board_mobile {
+    color: white;
+    font-size: 30px;
+    text-decoration: none;
+    padding: 100px 0px 30px 0px;
+    text-align: center;
+}
+
+/* 배너영역 Text */
+.board_title {
+    color: white;
+}
+
+.index_board_row {
+    background-color: black;
+    border-bottom: 4px solid white;
+    color: white;
+    padding: 10px;
+}

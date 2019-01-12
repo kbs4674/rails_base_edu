@@ -1,0 +1,45 @@
+<div class="board d-none d-md-block" style="background: url('<%= asset_path 'board_banner1.jpg' %>') no-repeat fixed; background-size: 100% 70%; background-position:0px -180px;">
+  <div class="container" align="left">
+    <%= link_to "Post", posts_path, class: "board_title" %>
+  </div>
+</div>
+<div class="board_mobile d-md-none" style="background: url('<%= asset_path 'board_banner1.jpg' %>') no-repeat center center/cover scroll;">
+  <%= link_to "Post", posts_path, class: "board_title" %>
+</div>
+
+<%# 경고메세지 출력 (아이디, 비밀번호 잘못 칠 시 등등...) %>
+<% if alert %>
+  <div class="alert alert-danger tlert-dismissible fade show text-center" style="padding: 10px; background-color: #FF4B5C; color: white; border-radius: 0; margin-bottom: 0; border: 0">
+    <%= alert %>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+<% elsif notice %>
+  <div class="alert alert-danger tlert-dismissible fade show text-center" style="padding: 10px; background-color: #43AC6A; color: white; border-radius: 0; margin-bottom: 0; border: 0">
+    <%= notice %>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+<% end %>
+
+<div class="container" style="margin-top: 30px;">
+  <div class="row" style="margin-top: 30px;">
+    <div class="d-none d-md-block col-md-1 index_board_row" align="center">No.</div>
+    <div class="col-7 col-sm-7 col-md-9 index_board_row" align="center">제목</div>
+    <div class="col-5 col-sm-5 col-md-2 index_board_row" align="center">작성날짜</div>
+  </div>
+  
+  <% if @posts.empty? %>
+    <h2 class="text-center" style="margin-top: 30px;">게시글이 없습니다.</h2>
+  <% else %>
+    <% @posts.each do |x| %>
+      <div class="row" bgcolor="white" onMouseOver="this.style.backgroundColor='#ECECEC'" onMouseOut="this.style.backgroundColor='#FFFFFF'">
+        <div class="d-none d-md-block col-md-1" align="center" style="padding: 10px;"><%= x.id %></div>
+        <%= link_to post_path(x), class: "col-7 col-sm-7 col-md-9" do %>
+          <div style="padding: 10px;"><%= x.title %></div>
+        <% end %>
+        <div class="col-5 col-sm-5 col-md-2" align="center" style="padding: 10px;"><%= x.created_at.in_time_zone("Asia/Seoul").strftime('%Y-%m-%d %H:%M') %></div>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <div align="right" style="margin-top: 30px;"><%= link_to '새 글 쓰기', new_post_path %></div>
+</div>

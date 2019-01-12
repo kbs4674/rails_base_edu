@@ -1,0 +1,33 @@
+<div class="board d-none d-md-block" style="background: url('<%= asset_path 'board_banner1.jpg' %>') no-repeat fixed; background-size: 100% 70%; background-position:0px -180px;">
+  <div class="container" align="left">
+    <%= link_to "Post", posts_path, class: "board_title" %>
+  </div>
+</div>
+<div class="board_mobile d-md-none" style="background: url('<%= asset_path 'board_banner1.jpg' %>') no-repeat center center/cover scroll;">
+  <%= link_to "Post", posts_path, class: "board_title" %>
+</div>
+
+<%# 경고메세지 출력 (아이디, 비밀번호 잘못 칠 시 등등...) %>
+<% if alert %>
+  <div class="alert alert-danger tlert-dismissible fade show text-center" style="padding: 10px; background-color: #FF4B5C; color: white; border-radius: 0; margin-bottom: 0; border: 0">
+    <%= alert %>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+<% elsif notice %>
+  <div class="alert alert-danger tlert-dismissible fade show text-center" style="padding: 10px; background-color: #43AC6A; color: white; border-radius: 0; margin-bottom: 0; border: 0">
+    <%= notice %>
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+  </div>
+<% end %>
+
+<p>
+  <strong>Title:</strong>
+  <%= @post.title %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @post.content %>
+</p>
+
+<%= link_to 'Edit', edit_post_path(@post) %> | <%= link_to '삭제', @post, method: :delete, data: { confirm: '정말로 삭제하시겠습니까?' } %> | <%= link_to 'Back', posts_path %>

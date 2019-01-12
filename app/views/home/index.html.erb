@@ -1,0 +1,48 @@
+<div class="main" style="background: url('/img/main_background.jpg') no-repeat center center/cover scroll;">
+    <div style="font-size: 50px;"><span id="typed" style="color: yellow;"></span>를 위한 강의 템플릿</div>
+</div>
+
+<!-- Typed.js List -->
+<div id="name">
+    <p>상희</p>
+    <p>상은이</p>
+    <p>유미</p>
+</div>
+
+<div class="container" style="margin-bottom: 100px">
+    <div class="row" style="margin-top: 30px;">
+        <div class="offset-md-2 col-md-2" style="border-top: 1px solid #989898; margin-top: 30px;"></div>
+        <div align="center" class="col-md-4" style="font-family: 'SangSangAnt'; font-size: 50px;">Rails 교육용 Tamplate</div>
+        <div class="col-md-2" style="border-top: 1px solid #989898; margin-top: 30px;"></div>
+    </div>
+    
+    <div align="left" style="white-space: pre-wrap;">
+        1. Gem : jquery-rails 설치
+        2. Gem : Rails DB 설치
+        3. Gem : Devise 설치
+        4. 부트스트랩 V4.1 적용
+        5. Scaffold 적용 (Post)
+        6. 간단한 디자인 (홈페이지 메인, Scaffold:Post Index 등)
+        7. Turbolinks 제거 (사유 : Jquery와의 충돌)
+    </div>
+    
+    <div class="row" style="margin-top: 30px;">
+        <div class="offset-md-2 col-md-2" style="border-top: 1px solid #989898; margin-top: 30px;"></div>
+        <div align="center" class="col-md-4" style="font-family: 'SangSangAnt'; font-size: 50px;">Post 게시글</div>
+        <div class="col-md-2" style="border-top: 1px solid #989898; margin-top: 30px;"></div>
+    </div>
+    
+    <% if Post.all.empty? %>
+        <h2 class="text-center" style="margin-top: 30px;">게시글이 없습니다.</h2>
+    <% else %>
+        <% Post.first(5).each do |x| %>
+            <%= link_to post_path(x) do %>
+                <div class="row">
+                    <div class="col-7 col-sm-7 col-md-10"><%= x.title %></div>
+                    <div class="col-5 col-sm-5 col-md-2"><%= x.created_at.in_time_zone("Asia/Seoul").strftime('%Y-%m-%d %H:%M') %></div>
+                </div>
+            <% end %>
+            <hr/>
+        <% end %>
+    <% end %>
+</div>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kcm</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <!-- 로딩중 -->
+    <link rel="stylesheet" href="/css/loading.css"/>
+    <script src="/js/loading.js"></script>
+    
+    <!-- 부트스트랩 v4.1 -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    
+    <!-- 폰트어썸 5버전 -->
+    <link href="https://use.fontawesome.com/releases/v5.0.2/css/all.css" rel="stylesheet">
+    <%# 사이트 : https://fontawesome.com/icons %>
+    
+    <!-- Nav-bar -->
+    <link rel="stylesheet" href="/nav-bar/style.css"/>
+    
+    <!-- Typed.js -->
+    <script src="/typed/typed.js"></script>
+    <script src="/typed/demos.js"></script>
+    
+    <style>
+      /* 개미 똥꾸멍 */
+      @font-face {
+        font-family: 'SangSangAnt';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/SangSangAnt.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+      }
+
+      /* 나눔고딕 */
+      @font-face {
+      	font-family: 'NanumGothic', '나눔고딕', sas-serif !important;
+      	src: url('/font/NanumGothic.eot');
+      	src: local('※'), 
+      	url('/font/NanumGothic.woff') format('woff'), 
+      	url('/font/NanumGothic.ttf') format('truetype')
+    	}
+    	
+      body {
+        font-family: 'NanumGothic', '나눔고딕', sas-serif !important;
+        margin: 0px 0px 0px 0px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 로딩중 아이콘 -->
+    <div id="loading"><img id="loading-image" src="<%= asset_path 'loading.gif' %>" alt="Loading..." /></div>
+  
+    <header id="header">
+    <div class="container-fluid">
+      <div id="logo" class="pull-left">
+        <h1><a href="/" class="scrollto">홈페이지</a></h1>
+        <!-- Uncomment below if you prefer to use an image logo -->
+        <!-- <a href="#intro"><img src="img/logo.png" alt="" title="" /></a>-->
+      </div>
+    
+      <nav id="nav-menu-container">
+        <ul class="nav-menu" style="margin-right: 100px;">
+          <li><%= link_to "게시판(Post)", posts_path %></li>
+          <li class="menu-has-children"><span style="color: white;"><%= link_to "드롭박스", nil %></span>
+            <ul>
+              <li><a href="#">Drop Down 1</a></li>
+              <li><a href="#">Drop Down 3</a></li>
+              <li><a href="#">Drop Down 4</a></li>
+              <li><a href="#">Drop Down 5</a></li>
+            </ul>
+          </li>
+          <li><%= link_to "RAILS DB", rails_db_path, target: "_blank" %></li>
+          <% if user_signed_in? %>
+            <li class="d-none d-md-block menu-has-children"><span style="color: white;"><a><i class="far fa-id-card"></i> <%= current_user.email.truncate(10, omission: '...') %></a></span>
+            <ul>
+              <li><%= link_to "마이 페이지", "/users/page/#{current_user.id}" %></li>
+              <li><%= link_to "개인정보 수정", edit_user_registration_path(current_user.id) %></li>
+              <li><%= link_to "로그아웃", destroy_user_session_path, method: "DELETE" %></li>
+            </ul>
+          </li>
+          <% else %>
+            <li class="d-none d-md-block"><%= link_to "로그인", new_user_session_path, style: "color: #18d26e" %></li>
+            <li class="d-none d-md-block"><%= link_to "회원가입", new_user_registration_path, style: "color: #18d26e" %></li>
+          <% end %>
+        </ul>
+      </nav><!-- #nav-menu-container -->
+    </div>
+    </header>
+    <!-- nav-bar -->
+    
+    <!-- JavaScript Libraries -->
+    <script src="/nav-bar/superfish.min.js"></script>
+    <script src="/nav-bar/wow.min.js"></script>
+  
+    <!-- Template Main Javascript File -->
+    <script src="/nav-bar/main.js"></script>
+    <%= yield %>
+  </body>
+</html>
